@@ -9,3 +9,4 @@ In the regression data set NULL values will be set to the mean for that column
 
 Sklearn should be used to apply feature reduction and PCA when the data is cleaned
 
+Graphs should be drawn to visualise outliers, and these should be removed
