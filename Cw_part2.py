@@ -8,7 +8,9 @@ import pandas as pd
 
 df_raw_data = pd.read_csv("trainDataset.csv")
 df_test_data = pd.read_csv("testDatasetExample.csv")
-print(df_raw_data.head())
+
+cleanData(df_raw_data)
 
 def cleanData(df_raw):
-    a=1
+    print(df_raw.duplicated().sum())
+    
