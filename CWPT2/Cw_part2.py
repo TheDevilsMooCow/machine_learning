@@ -6,13 +6,19 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
 
 def main():
     df_raw_data = pd.read_excel('trainDataset.xls')
+    test_data = pd.read_excel('trainDataset.xls')
     df_raw_data = df_raw_data.drop(['RelapseFreeSurvival (outcome)', 'ID'], axis = 1)
+    test_data = test_data.drop(['ID'], axis = 1)
     #df_test_data = pd.read_excel('testDatasetExample.xls')
     
-    cleanData(df_raw_data)
+    clean, target = cleanData(df_raw_data)
+    decision_tree_model = decisionTree(clean,target)
+    #decision_tree_model.predict(test_data)
+    
 
 def cleanData(df_raw):
     print(df_raw.duplicated().sum())
@@ -41,10 +47,13 @@ def cleanData(df_raw):
     pca.fit(data)
     reduced = pca.transform(data)
     print(reduced.shape)
+    return reduced, target
     
 
-
-    
+def decisionTree(X_train, y_train):
+    clf = RandomForestClassifier(random_state=1, max_depth=10)
+    dtt = clf.fit(X_train, y_train)
+    return dtt
     
 
 if __name__ == "__main__":
