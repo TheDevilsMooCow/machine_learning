@@ -9,7 +9,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from scipy import stats
 
-def main():
+def dataPreprocessingClassification():
     df_raw_data = pd.read_excel('trainDataset.xls')
     test_data = pd.read_excel('testDatasetExample.xls')
     df_raw_data = df_raw_data.drop(['RelapseFreeSurvival (outcome)', 'ID'], axis = 1)
@@ -49,10 +49,7 @@ def cleanData(df_raw):
     #cols = list(df_raw.columns)
 
     print(df_raw.shape)
-    x = 0
     df_raw = df_raw[(np.abs(stats.zscore(df_raw)) < 3).all(axis = 1)]
-    
-    
     
     #scales the data
     target = df_raw['pCR (outcome)']
@@ -78,4 +75,4 @@ def decisionTree(X_train, y_train):
     
 
 if __name__ == "__main__":
-    main()
+    dataPreprocessingClassification()
