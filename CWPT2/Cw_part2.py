@@ -19,6 +19,7 @@ def dataPreprocessingClassification():
     clean, target = cleanData(df_raw_data)
     decision_tree_model = decisionTree(clean,target)
     #decision_tree_model.predict(test_data)
+    return clean, target
     
 
 def cleanData(df_raw):
