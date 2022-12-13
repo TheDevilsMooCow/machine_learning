@@ -66,6 +66,30 @@ them and if you have any questions, direct them to Conference Management
 Services, Inc.: Phone +1-979-846-6800 or email
 to \\\texttt{icip2019@cmsworkshops.com}.
 
+\section{Linear Regression}
+For the regression task a simple approach of linear regression was first tested. A linear regression model takes the form:
+\begin{equation}
+    Y = \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + \cdot\cdot\cdot + \beta_{p}X_{p} + \epsilon
+    \label{2ndequation}
+\end{equation}
+In terms of the breast cancer data, \(Y\) is the relapse-free survival (RFS) time and the \(X_{j}\) are the features which were kept from the feature selection process. The \(\beta_{j}\) are the parameters that need to be estimated to give the best performing model, and the \(\epsilon\) is the irreducible error. Estimation of the parameters is carried out by finding those parameters that minimise the sum of squared errors. 
+
+For the breast cancer training dataset, linear regression was applied using cross validation. Ten folds were used and a grid search was performed to understand whether fitting an intercept parameter (\(\beta_{0}\) in \ref{2ndequation}) improved the models performance or not, and negative mean squared error was used for scoring.  The results showed that fitting an intercept did help performance, with the model achieving a negative mean squared error of \(-0.058\). 
+
+
+\section{Logistic Regression}
+
+
+A machine learning model that was tested for the classification task was logistic regression. Logistic regression is a popular classification method. It works by modelling the \emph{probability} that a response belongs to a specific class. For the breast cancer dataset, the response is pathological complete response (PCR) and needs to be classified as a 1 or a 0, 1 representing whether a patient has a high likelihood of achieving cure, and 0 representing a low likelihood. Logisitic regression makes use of the logistic function to model the probability: 
+\begin{equation}
+    p(X) = \frac{e^{\beta_{0} + \beta_{1}X}}{1 + e^{\beta_{0} + \beta_{1}X}}
+\end{equation}
+Here \(\beta_{0}\) and \(\beta_{1}\) are the parameters to be estimated, and this can be done by either maximising the likelihood function or minimising the cross-entropy. The output of this function is always between \(0\) and \(1\), hence why it is used to model probabilities. 
+
+For the breast cancer training dataset, logistic regression was applied using cross validation. Five folds were used and a grid search was performed to find the best penalty to use, with classification accuracy used for scoring. The results showed that the best performance was achieved using an L1 penalty term, resulting in a mean test score of 0.75. 
+
+
+
 \section{Formatting your paper}
 \label{sec:format}
 
